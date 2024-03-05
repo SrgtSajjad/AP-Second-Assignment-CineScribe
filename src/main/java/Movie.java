@@ -12,11 +12,15 @@ public class Movie {
     int ImdbVotes;
     ArrayList<String> actorsList;
     String rating;
+    int year;
 
     public Movie(ArrayList<String> actorsList, String rating, int ImdbVotes){
         this.actorsList = actorsList;
         this.rating = rating;
         this.ImdbVotes = ImdbVotes;
+    }
+    public Movie(int year){
+        this.year = year;
     }
 
 
@@ -67,6 +71,13 @@ public class Movie {
         }
 
         return rating;
+    }
+
+    public int getYearMadeViaApi(String moviesInfoJson){
+        JSONObject jsonObject = new JSONObject(moviesInfoJson);
+
+        int YearMade = jsonObject.getInt("year");
+        return YearMade;
     }
 
     public void getActorListViaApi(String movieInfoJson){
