@@ -8,10 +8,10 @@ import java.net.URL;
 import java.net.HttpURLConnection;
 public class Actors {
     public static final String API_KEY = "g6xmG45Gyp4MrdnXYQkW1g==EfClMRrFdwpizhBP";
-    String netWorth;
+    long netWorth;
     Boolean isAlive;
 
-    public Actors(String netWorth, boolean isAlive){
+    public Actors(long netWorth, boolean isAlive){
         this.isAlive = isAlive;
         this.netWorth = netWorth;
     }
