@@ -1,15 +1,14 @@
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
-import java.io.BufferedReader;
 import java.util.ArrayList;
-
-import org.json.simple.parser.JSONParser;
 public class Movie {
-    public static final String API_KEY = "55585491";   // TODO --> add your api key about Movie here
+    public static final String API_KEY = "55585491";
     int ImdbVotes;
     ArrayList<String> actorsList;
     String rating;
@@ -46,7 +45,8 @@ public class Movie {
     public int getImdbVotesViaApi(String moviesInfoJson){
         JSONObject jsonObject = new JSONObject(moviesInfoJson) ;
 
-        int ImdbVotes = jsonObject.getInt("imdbVotes");
+        int ImdbVotes = Integer.parseInt(jsonObject.getString("imdbVotes").replace(",", ""));
+
         return ImdbVotes;
     }
 
@@ -70,6 +70,14 @@ public class Movie {
     }
 
     public void getActorListViaApi(String movieInfoJson){
-        //TODO --> (This function must return the "Actors" in actorsList)
+
+        JSONObject jsonObject = new JSONObject(movieInfoJson);
+
+        String actorsString = jsonObject.getString("Actors");
+        String[] actorsArray = actorsString.split(", ");
+
+        for (String actor : actorsArray) {
+            actorsList.add(actor);
+        }
     }
 }
