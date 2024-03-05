@@ -11,7 +11,7 @@ public class MovieTest {
 
     @BeforeAll
     static void setUp() throws IOException {
-        movie = new Movie(new ArrayList<>(),"",0);
+        movie = new Movie(new ArrayList<>(),"",0, 0);
         data1 = movie.getMovieData("maze runner");  // movie
         data2 = movie.getMovieData("this is us");   // series
     }
