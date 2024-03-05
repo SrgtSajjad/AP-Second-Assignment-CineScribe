@@ -15,7 +15,9 @@ public class Movie {
     String rating;
 
     public Movie(ArrayList<String> actorsList, String rating, int ImdbVotes){
-        //TODO --> (Write a proper constructor using the get_from_api functions)
+        this.actorsList = actorsList;
+        this.rating = rating;
+        this.ImdbVotes = ImdbVotes;
     }
 
 
