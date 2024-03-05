@@ -1,3 +1,6 @@
+import org.json.JSONObject;
+import org.json.JSONArray;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -9,7 +12,8 @@ public class Actors {
     Boolean isAlive;
 
     public Actors(String netWorth, boolean isAlive){
-        //TODO --> (Write a proper constructor using the get_from_api functions)
+        this.isAlive = isAlive;
+        this.netWorth = netWorth;
     }
     @SuppressWarnings({"deprecation"})
     /**
@@ -43,21 +47,27 @@ public class Actors {
             return null;
         }
     }
-    public double getNetWorthViaApi(String actorsInfoJson){
-        //TODO --> (This function must return the "NetWorth")
-        double result = 0.0;
+    public long getNetWorthViaApi(String actorsInfoJson){
+        JSONArray jsonArray = new JSONArray(actorsInfoJson);
+        JSONObject jsonObject = jsonArray.getJSONObject(0);
+
+        long result = jsonObject.getLong("net_worth");
         return result;
     }
 
     public boolean isAlive(String actorsInfoJson){
-        //TODO --> (If your chosen actor is alive it must return true otherwise it must return false)
-        boolean statues = false;
+        JSONArray jsonArray = new JSONArray(actorsInfoJson);
+        JSONObject jsonObject = jsonArray.getJSONObject(0);
+
+        boolean statues = jsonObject.getBoolean("is_alive");
         return statues;
     }
 
     public String getDateOfDeathViaApi(String actorsInfoJson){
-        //TODO --> (If your chosen actor is deceased it must return the date of death)  -->
-        String date = "";
+        JSONArray jsonArray = new JSONArray(actorsInfoJson);
+        JSONObject jsonObject = jsonArray.getJSONObject(0);
+
+        String date = jsonObject.getString("death");
         return date;
     }
 
