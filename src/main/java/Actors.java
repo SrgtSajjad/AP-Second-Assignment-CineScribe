@@ -1,20 +1,25 @@
-import org.json.JSONObject;
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.URL;
 import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+
 public class Actors {
     public static final String API_KEY = "g6xmG45Gyp4MrdnXYQkW1g==EfClMRrFdwpizhBP";
-    long netWorth;
+    String netWorth;
     Boolean isAlive;
+    ArrayList<String> occupationsList;
 
-    public Actors(long netWorth, boolean isAlive){
+    public Actors(String netWorth, boolean isAlive, ArrayList<String> occupationsList){
         this.isAlive = isAlive;
         this.netWorth = netWorth;
+        this.occupationsList = occupationsList;
     }
+
     @SuppressWarnings({"deprecation"})
     /**
      * Retrieves data for the specified actor.
@@ -69,6 +74,18 @@ public class Actors {
 
         String date = jsonObject.getString("death");
         return date;
+    }
+
+    public void getOccupationsViaApi(String actorsInfoJson){
+        JSONArray jsonArray = new JSONArray(actorsInfoJson);
+        JSONObject jsonObject = jsonArray.getJSONObject(0);
+        JSONArray occupationsArray = jsonObject.getJSONArray("occupation");
+
+        int l = occupationsArray.length();
+
+        for (int i = 0; i < occupationsArray.length(); i++) {
+            occupationsList.add(occupationsArray.getString(i));
+        }
     }
 
 }
