@@ -11,11 +11,13 @@ import java.util.ArrayList;
 public class Actors {
     public static final String API_KEY = "g6xmG45Gyp4MrdnXYQkW1g==EfClMRrFdwpizhBP";
     String name;
-    String netWorth;
-    Boolean isAlive;
+    long netWorth;
+    boolean isAlive;
+    String deathDate;
+    int age;
     ArrayList<String> occupationsList;
 
-    public Actors(String netWorth, boolean isAlive, ArrayList<String> occupationsList){
+    public Actors(long netWorth, boolean isAlive, ArrayList<String> occupationsList){
         this.isAlive = isAlive;
         this.netWorth = netWorth;
         this.occupationsList = occupationsList;
@@ -53,12 +55,28 @@ public class Actors {
             return null;
         }
     }
+
+    public void setAttributes(String movieInfoJson){
+        getOccupationsViaApi(movieInfoJson);
+        netWorth = getNetWorthViaApi(movieInfoJson);
+        isAlive = isAlive(movieInfoJson);
+        deathDate = getDateOfDeathViaApi(movieInfoJson);
+        age = getAgeViaApi(movieInfoJson);
+    }
     public long getNetWorthViaApi(String actorsInfoJson){
         JSONArray jsonArray = new JSONArray(actorsInfoJson);
         JSONObject jsonObject = jsonArray.getJSONObject(0);
 
         long result = jsonObject.getLong("net_worth");
         return result;
+    }
+
+    public int getAgeViaApi(String actorsInfoJson){
+        JSONArray jsonArray = new JSONArray(actorsInfoJson);
+        JSONObject jsonObject = jsonArray.getJSONObject(0);
+
+        int age = jsonObject.getInt("age");
+        return age;
     }
 
     public boolean isAlive(String actorsInfoJson){
