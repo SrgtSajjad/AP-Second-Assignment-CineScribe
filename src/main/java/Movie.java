@@ -9,6 +9,7 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 public class Movie {
     public static final String API_KEY = "55585491";
+    String title;
     int ImdbVotes;
     ArrayList<String> actorsList;
     String rating;
@@ -90,13 +91,13 @@ public class Movie {
         }
     }
 
-    public boolean handleErrors(String movieInfoJson){
+    public boolean checkResponse(String movieInfoJson){
         JSONObject jsonObject = new JSONObject(movieInfoJson);
 
         String response = jsonObject.getString("Response");
         if (response == "false") {
-            return true;
+            return false;
         }
-        return false;
+        return true;
     }
 }
