@@ -12,9 +12,9 @@ public class Movie {
     int ImdbVotes;
     ArrayList<String> actorsList;
     String rating;
-    int yearReleased;
+    String yearReleased;
 
-    public Movie(ArrayList<String> actorsList, String rating, int ImdbVotes, int yearReleased){
+    public Movie(ArrayList<String> actorsList, String rating, int ImdbVotes, String yearReleased){
         this.actorsList = actorsList;
         this.rating = rating;
         this.ImdbVotes = ImdbVotes;
@@ -71,10 +71,10 @@ public class Movie {
         return rating;
     }
 
-    public int getYearMadeViaApi(String moviesInfoJson){
+    public String getYearMadeViaApi(String moviesInfoJson){
         JSONObject jsonObject = new JSONObject(moviesInfoJson);
 
-        int YearMade = jsonObject.getInt("year");
+        String YearMade = jsonObject.getString("Year");
         return YearMade;
     }
 
@@ -88,5 +88,15 @@ public class Movie {
         for (String actor : actorsArray) {
             actorsList.add(actor);
         }
+    }
+
+    public boolean handleErrors(String movieInfoJson){
+        JSONObject jsonObject = new JSONObject(movieInfoJson);
+
+        String response = jsonObject.getString("Response");
+        if (response == "false") {
+            return true;
+        }
+        return false;
     }
 }
