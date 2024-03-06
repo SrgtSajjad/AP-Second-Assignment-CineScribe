@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 public class Actors {
     public static final String API_KEY = "g6xmG45Gyp4MrdnXYQkW1g==EfClMRrFdwpizhBP";
+    String name;
     String netWorth;
     Boolean isAlive;
     ArrayList<String> occupationsList;
