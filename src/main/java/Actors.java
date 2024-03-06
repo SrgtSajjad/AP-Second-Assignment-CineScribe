@@ -13,6 +13,7 @@ public class Actors {
     String name;
     long netWorth;
     boolean isAlive;
+    String birthday;
     String deathDate;
     int age;
     ArrayList<String> occupationsList;
@@ -56,13 +57,24 @@ public class Actors {
         }
     }
 
-    public void setAttributes(String movieInfoJson){
-        getOccupationsViaApi(movieInfoJson);
-        netWorth = getNetWorthViaApi(movieInfoJson);
-        isAlive = isAlive(movieInfoJson);
-        deathDate = getDateOfDeathViaApi(movieInfoJson);
-        age = getAgeViaApi(movieInfoJson);
+    public void setAttributes(String actorsInfoJson){
+        getOccupationsViaApi(actorsInfoJson);
+        netWorth = getNetWorthViaApi(actorsInfoJson);
+        isAlive = isAlive(actorsInfoJson);
+        birthday = getBirthdayViaApi(actorsInfoJson);
+        deathDate = getDateOfDeathViaApi(actorsInfoJson);
+        age = getAgeViaApi(actorsInfoJson);
     }
+
+    public String getBirthdayViaApi(String actorsInfoJson) {
+        JSONArray jsonArray = new JSONArray(actorsInfoJson);
+        JSONObject jsonObject = jsonArray.getJSONObject(0);
+
+        String date = jsonObject.getString("birthday");
+        return date;
+
+    }
+
     public long getNetWorthViaApi(String actorsInfoJson){
         JSONArray jsonArray = new JSONArray(actorsInfoJson);
         JSONObject jsonObject = jsonArray.getJSONObject(0);
