@@ -45,6 +45,13 @@ public class Movie {
         //handle an error if the chosen movie is not found
         return stringBuilder.toString();
     }
+
+    public void setAttributes(String movieInfoJson){
+        getActorListViaApi(movieInfoJson);
+        rating = getRatingViaApi(movieInfoJson);
+        ImdbVotes = getImdbVotesViaApi(movieInfoJson);
+        yearReleased = getYearReleasedViaApi(movieInfoJson);
+    }
     public int getImdbVotesViaApi(String moviesInfoJson){
         JSONObject jsonObject = new JSONObject(moviesInfoJson) ;
 
@@ -72,7 +79,7 @@ public class Movie {
         return rating;
     }
 
-    public String getYearMadeViaApi(String moviesInfoJson){
+    public String getYearReleasedViaApi(String moviesInfoJson){
         JSONObject jsonObject = new JSONObject(moviesInfoJson);
 
         String YearMade = jsonObject.getString("Year");
