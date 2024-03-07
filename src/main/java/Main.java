@@ -33,7 +33,7 @@ public class Main {
             actor.name = scanner.nextLine();
             flag = movie.actorsList.contains(actor.name);
             if (!flag){
-                System.out.println("Actor Not In The List");
+                System.out.println("Error: Actor Not In The List");
             }
         }
         actorData = actor.getActorData(actor.name);
