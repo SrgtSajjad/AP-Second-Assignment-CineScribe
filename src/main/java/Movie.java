@@ -7,6 +7,8 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.Objects;
+
 public class Movie {
     public static final String API_KEY = "55585491";
     String title;
@@ -102,7 +104,7 @@ public class Movie {
         JSONObject jsonObject = new JSONObject(movieInfoJson);
 
         String response = jsonObject.getString("Response");
-        if (response == "false") {
+        if (Objects.equals(response, "False")) {
             return false;
         }
         return true;

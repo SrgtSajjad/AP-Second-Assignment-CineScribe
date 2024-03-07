@@ -62,7 +62,9 @@ public class Actors {
         netWorth = getNetWorthViaApi(actorsInfoJson);
         isAlive = isAlive(actorsInfoJson);
         birthday = getBirthdayViaApi(actorsInfoJson);
-        deathDate = getDateOfDeathViaApi(actorsInfoJson);
+        if (!isAlive) {
+            deathDate = getDateOfDeathViaApi(actorsInfoJson);
+        }
         age = getAgeViaApi(actorsInfoJson);
     }
 
