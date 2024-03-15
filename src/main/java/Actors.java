@@ -1,16 +1,29 @@
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.URL;
 import java.net.HttpURLConnection;
-public class Actors {
-    public static final String API_KEY = "Your API_KEY";   // TODO --> add your api key about Actors here
-    String netWorth;
-    Boolean isAlive;
+import java.net.URL;
+import java.util.ArrayList;
 
-    public Actors(String netWorth, boolean isAlive){
-        //TODO --> (Write a proper constructor using the get_from_api functions)
+public class Actors {
+    public static final String API_KEY = "g6xmG45Gyp4MrdnXYQkW1g==EfClMRrFdwpizhBP";
+    String name;
+    long netWorth;
+    boolean isAlive;
+    String birthday;
+    String deathDate;
+    int age;
+    ArrayList<String> occupationsList;
+
+    public Actors(long netWorth, boolean isAlive, ArrayList<String> occupationsList){
+        this.isAlive = isAlive;
+        this.netWorth = netWorth;
+        this.occupationsList = occupationsList;
     }
+
     @SuppressWarnings({"deprecation"})
     /**
      * Retrieves data for the specified actor.
@@ -43,22 +56,69 @@ public class Actors {
             return null;
         }
     }
-    public double getNetWorthViaApi(String actorsInfoJson){
-        //TODO --> (This function must return the "NetWorth")
-        double result = 0.0;
+
+    public void setAttributes(String actorsInfoJson){
+        getOccupationsViaApi(actorsInfoJson);
+        netWorth = getNetWorthViaApi(actorsInfoJson);
+        isAlive = isAlive(actorsInfoJson);
+        birthday = getBirthdayViaApi(actorsInfoJson);
+        if (!isAlive) {
+            deathDate = getDateOfDeathViaApi(actorsInfoJson);
+        }
+        age = getAgeViaApi(actorsInfoJson);
+    }
+
+    public String getBirthdayViaApi(String actorsInfoJson) {
+        JSONArray jsonArray = new JSONArray(actorsInfoJson);
+        JSONObject jsonObject = jsonArray.getJSONObject(0);
+
+        String date = jsonObject.getString("birthday");
+        return date;
+
+    }
+
+    public long getNetWorthViaApi(String actorsInfoJson){
+        JSONArray jsonArray = new JSONArray(actorsInfoJson);
+        JSONObject jsonObject = jsonArray.getJSONObject(0);
+
+        long result = jsonObject.getLong("net_worth");
         return result;
     }
 
+    public int getAgeViaApi(String actorsInfoJson){
+        JSONArray jsonArray = new JSONArray(actorsInfoJson);
+        JSONObject jsonObject = jsonArray.getJSONObject(0);
+
+        int age = jsonObject.getInt("age");
+        return age;
+    }
+
     public boolean isAlive(String actorsInfoJson){
-        //TODO --> (If your chosen actor is alive it must return true otherwise it must return false)
-        boolean statues = false;
+        JSONArray jsonArray = new JSONArray(actorsInfoJson);
+        JSONObject jsonObject = jsonArray.getJSONObject(0);
+
+        boolean statues = jsonObject.getBoolean("is_alive");
         return statues;
     }
 
     public String getDateOfDeathViaApi(String actorsInfoJson){
-        //TODO --> (If your chosen actor is deceased it must return the date of death)  -->
-        String date = "";
+        JSONArray jsonArray = new JSONArray(actorsInfoJson);
+        JSONObject jsonObject = jsonArray.getJSONObject(0);
+
+        String date = jsonObject.getString("death");
         return date;
+    }
+
+    public void getOccupationsViaApi(String actorsInfoJson){
+        JSONArray jsonArray = new JSONArray(actorsInfoJson);
+        JSONObject jsonObject = jsonArray.getJSONObject(0);
+        JSONArray occupationsArray = jsonObject.getJSONArray("occupation");
+
+        int l = occupationsArray.length();
+
+        for (int i = 0; i < occupationsArray.length(); i++) {
+            occupationsList.add(occupationsArray.getString(i));
+        }
     }
 
 }

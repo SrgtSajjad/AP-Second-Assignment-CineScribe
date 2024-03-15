@@ -1,12 +1,15 @@
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 public class ActorsTest {
     static String data1 , data2;
     static Actors actors;
     @BeforeAll
     static void setUp() {
-        actors = new Actors("",false);
+        actors = new Actors("",false, new ArrayList<>());
         data1 = actors.getActorData("jennifer lawrence");
         data2 =  actors.getActorData("robin williams");
     }

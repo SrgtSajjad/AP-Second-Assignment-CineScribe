@@ -1,62 +1,67 @@
-# Project Title
+# CineScribe
 
-Simple overview of use/purpose.
+An application used for getting movies and actor information.
 
 ## Description
 
-An in-depth paragraph about your project and overview of use.
+This application uses *api keys* for getting the latest information on a movie and an actor afterward.
+It gets the name of a movie and shows the year released, the imdb rating and votes etc... including 
+the list of the actors who played in it. Then you can choose one of the actors from list which you'd
+like to know more about and the app will show you their information.
 
 ## Getting Started
 
 ### Dependencies
 
-* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-* ex. Windows 10
+* IntelliJ for running the code
+* Gradle as package manager
+* com.googlecode.json-simple
+* org.json
+* com.fasterxml.jackson.core
+* org.junit.jupiter:junit-jupiter-engine:5.8.1
+* org.junit.jupiter:junit-jupiter-api:5.8.1
+* org.junit.jupiter:junit-jupiter:5.8.1
 
 ### Installing
 
-* How/where to download your program
-* Any modifications needed to be made to files/folders
+* The app can be downloaded from [*GitHub*](https://github.com/SrgtSajjad/AP-Second-Assignment-CineScribe.git)
+* Download Gradle 8.6 from [*Gradle*](https://gradle.org/releases/)
+* Download IntelliJ IDEA community version from [*JetBrains*](https://www.jetbrains.com/idea/download/)
+* Download Java from [*Oracle*](https://www.oracle.com/java/technologies/downloads/)
 
 ### Executing program
 
-* How to run the program
-* Step-by-step bullets
-```
-code blocks for commands
-```
+* Run the program using IntelliJ
+* Enter the name of a movie
+* Enter the name of an actor from the list (case-sensitive)
+* * * 
+## Tasks Completed
+* Movie Class:
+  * Imdb Votes
+  * Imdb Rating
+  * Year Released
+  * Actor List
+  * Check Response (for handling errors)
+* Actor Class:
+  * Birthday
+  * Net Worth
+  * Age
+  * Is Alive
+  * Death Date
+  * Occupations
 
-## Help
-
-Any advise for common problems or issues.
-```
-command to run if program contains helper info
-```
-
+## Challenges
+* Movie Class
+  * Listing the actors: accomplished by using regex and the split method
+* Actor Class
+  * Extracting data: accomplished by creating a JSONArray
+* * * 
 ## Authors
 
-Contributors names and contact info
+Mohammad Sajjad Zanganeh
+[@SrgtSajjad](https://github.com/SrgtSajjad)
 
-ex. Dominique Pizzie  
-ex. [@DomPizzie](https://twitter.com/dompizzie)
 
-## Version History
-
-* 0.2
-    * Various bug fixes and optimizations
-    * See [commit change]() or See [release history]()
-* 0.1
-    * Initial Release
-
-## License
-
-This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details
-
-## Acknowledgments
-
-Inspiration, code snippets, etc.
-* [awesome-readme](https://github.com/matiassingers/awesome-readme)
-* [PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
-* [dbader](https://github.com/dbader/readme-template)
-* [zenorocha](https://gist.github.com/zenorocha/4526327)
-* [fvcproductions](https://gist.github.com/fvcproductions/1bfc2d4aecb01a834b46)
+## External Links
+* [Movie Api](https://omdbapi.com/)
+* [Actor Api](https://api-ninjas.com/api/celebrity)
