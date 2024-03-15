@@ -20,7 +20,7 @@ public class Main {
             movieData = movie.getMovieData(movie.title);
             flag = movie.checkResponse(movieData);
             if (!flag){
-                System.out.println("Error: Movie Not Found");
+                System.out.println("Movie Not Found");
             }
         }
             movie.setAttributes(movieData);
@@ -33,7 +33,7 @@ public class Main {
             actor.name = scanner.nextLine();
             flag = movie.actorsList.contains(actor.name);
             if (!flag){
-                System.out.println("Error: Actor Not In The List");
+                System.out.println("Actor Not In The List");
             }
         }
         actorData = actor.getActorData(actor.name);
